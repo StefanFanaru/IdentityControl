@@ -1,0 +1,105 @@
+.navbar-item-container {
+  height: 45px;
+  display: flex;
+  border-left: 3px solid #B0B0B0;
+
+  &:hover {
+    background-color: #CFCFCF;
+    animation-name: color-fade-in;
+    animation-duration: 0.2s;
+    cursor: pointer;
+  }
+
+  &.link-active {
+    font-weight: 500;
+
+    .navbar-item {
+      background-color: #DCDCDC;
+    }
+
+    .navbar-item:hover {
+      background-color: #CFCFCF;
+    }
+  }
+}
+
+.navbar-item-container .navbar-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color: inherit;
+  }
+
+  .item-icon {
+    display: flex;
+    height: 100%;
+    width: 44px;
+    min-width: 44px;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+
+    span {
+      font-size: 30px;
+      color: var(--identity-control-blue);
+    }
+
+    svg {
+      font-size: 25px;
+      color: var(--identity-control-blue);
+      max-width: 30px;
+    }
+  }
+
+  .item-text-container {
+    height: 100%;
+    min-width: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+  }
+}
+
+.drop-icon {
+  margin: auto 15px auto 0;
+  color: #929292;
+  user-select: none;
+  transform: rotate(0deg);
+
+  &.animate {
+    animation-name: rotate-up;
+    animation-duration: 0.2s;
+  }
+
+  &.down {
+    transform: rotate(90deg);
+
+    &.animate {
+      animation-name: rotate-down;
+      animation-duration: 0.2s;
+    }
+  }
+}
+
+@keyframes rotate-down {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(90deg)
+  }
+}
+
+@keyframes rotate-up {
+  from {
+    transform: rotate(90deg)
+  }
+  to {
+    transform: rotate(0deg)
+  }
+}

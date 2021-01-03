@@ -1,0 +1,9 @@
+<div class="navbar-item" [routerLinkActive]="['link-active']">
+  <a [routerLink]="[item.link]">
+    <div class="item-icon" [matTooltip]="isExpanded ? null : item.text" matTooltipPosition="right" matTooltipShowDelay="400">
+      <span *ngIf="item.matIcon" [ngClass]="item.matIconClass ? item.matIconClass : 'material-icons'">{{ item.matIcon }}</span>
+      <i *ngIf="item.fontawesomeIcon" [ngClass]="item.fontawesomeIcon"></i>
+    </div>
+    <div *ngIf="isExpanded" class="item-text-container"><span class="item-text">{{ item.text }}</span></div>
+  </a>
+</div>

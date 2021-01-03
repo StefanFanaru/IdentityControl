@@ -1,0 +1,69 @@
+<div class="page-container">
+  <div class="flex self-start w-full h-14">
+    <p>
+      <button (click)="login()" class="btn btn-success mr-1">login</button>
+      <button (click)="logout()" class="btn btn-primary mr-1">logout</button>
+    </p>
+    <p>
+      <button (click)="refresh()" class="btn btn-warning mr-1">
+        force silent refresh
+      </button>
+      <button (click)="reload()" class="btn btn-secondary mr-1">
+        reload page
+      </button>
+      <button (click)="clearStorage()" class="btn btn-danger mr-1">
+        clear storage
+      </button>
+    </p>
+  </div>
+  <div class="flex w-1/2 self-start">
+    <table class="table table-bordered table-sm table-props">
+      <tr>
+        <th>IsAuthenticated</th>
+        <td>
+          <code id="isAuthenticated">{{ isAuthenticated | async }}</code>
+        </td>
+      </tr>
+      <tr>
+        <th>HasValidToken</th>
+        <td>
+          <code id="hasValidToken">{{ hasValidToken }}</code>
+        </td>
+      </tr>
+      <tr>
+        <th>CanActivateProtectedRoutes</th>
+        <td>
+          <code id="canActivateProtectedRoutes">{{
+            canActivateProtectedRoutes | async
+            }}</code>
+        </td>
+      </tr>
+      <tr>
+        <th>TokenClaims</th>
+        <td class="pre">
+          <code id="identityClaims">{{ identityClaims | json }}</code>
+        </td>
+      </tr>
+      <tr>
+        <th>AccessToken <br>
+          <button [cdkCopyToClipboard]="accessToken" mat-stroked-button>Copy</button>
+        </th>
+        <td>
+          <code class="break-all">{{ accessToken }}</code>
+        </td>
+      </tr>
+      <!--    <tr>-->
+      <!--      <th>RefreshToken</th>-->
+      <!--      <td>-->
+      <!--        <code class="break-all">{{ refreshToken }}</code>-->
+      <!--      </td>-->
+      <!--    </tr>-->
+      <!--      <tr>-->
+      <!--      <th>IdToken</th>-->
+      <!--      <td>-->
+      <!--        <code class="break-all">{{ idToken }}</code>-->
+      <!--      </td>-->
+      <!--    </tr>-->
+    </table>
+  </div>
+</div>

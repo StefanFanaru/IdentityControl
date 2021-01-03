@@ -1,0 +1,17 @@
+<div class="navbar-item-container"
+     [ngClass]="{'link-active': opened}"
+     [ngStyle]="{'border-left' : subItemActive && (!opened || !subItems) ? '3px solid var(--identity-control-blue)' :  !opened && !subItemActive ? '3px solid rgba(255,255,255, 0)' : '3px solid #B0B0B0'}">
+  <div class="navbar-item" (click)="onItemClick()">
+    <div class="item-icon" [matTooltip]="isExpanded ? null : item.text" matTooltipPosition="right">
+      <span *ngIf="item.matIcon" [ngClass]="item.matIconClass ? item.matIconClass : 'material-icons'">{{ item.matIcon }}</span>
+      <i *ngIf="item.fontawesomeIcon" [ngClass]="item.fontawesomeIcon"></i>
+    </div>
+    <div *ngIf="isExpanded" class="item-text-container"><span class="item-text">{{ item.text }}</span></div>
+    <span *ngIf="isExpanded && showArrows && subItems" class="material-icons drop-icon"
+          [ngClass]="{'down': opened, 'animate': animateArrows}">chevron_right</span>
+
+  </div>
+</div>
+<div *ngIf="opened">
+  <navbar-subitem *ngFor="let subitem of subItems" [item]="subitem" [isExpanded]="isExpanded"></navbar-subitem>
+</div>

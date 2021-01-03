@@ -1,0 +1,199 @@
+<div *ngIf="isFormVisible" id="overlay"></div>
+<div class="page-container">
+  <div class="top-wrapper">
+    <div class="flex w-full justify-between">
+      <div class="inline">
+        <button (click)="openForm(true)" mat-button><span class="material-icons">add</span>
+          Add
+        </button>
+        <div *ngIf="selectedRows.length > 0" class="inline">
+          <button (click)="openForm(false)" [disabled]="selectedRows.length > 1" mat-button>
+            <span class="material-icons">create</span>
+            Edit
+          </button>
+          <button (click)="delete(itemSelected.displayName)" mat-button>
+            <span class="material-icons identity-control-red ">delete_forever</span>
+            Delete
+          </button>
+          <button (click)="changeEnabledState()" [disabled]="!selectedItemsAreCompatible || !selectedRows[0]"
+                  mat-button>
+            <span *ngIf="selectedRows[0].enabled" class="material-icons-outlined">stop_circle</span>
+            <span *ngIf="!selectedRows[0].enabled" class="material-icons">play_arrow</span>
+            {{selectedRows[0].enabled ? 'Disable' : 'Enable'}}
+          </button>
+          <button [disabled]="selectedRows.length > 1" [matMenuTriggerFor]="menu" mat-button>
+            <span class="material-icons identity-control-blue">settings</span>
+            Manage
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="goToSecrets()" mat-menu-item>Secrets</button>
+            <button (click)="goToApiScopes()" mat-menu-item>API Scopes</button>
+            <button (click)="toggleManagePanel(0)" mat-menu-item>Grant Types</button>
+            <button (click)="toggleManagePanel(1)" mat-menu-item>CORS Origins</button>
+            <button (click)="toggleManagePanel(2)" mat-menu-item>Redirect URIs</button>
+            <button (click)="toggleManagePanel(3)" mat-menu-item>Logout redirect URIs</button>
+          </mat-menu>
+        </div>
+      </div>
+      <div class="inline self-end my-auto right-controls">
+        <button (click)="changeAllSelectionStates(false)" *ngIf="selectedRows.length > 0 && selectMultiple" mat-button><span
+          class="material-icons">highlight_off</span>
+          Deselect
+          all
+        </button>
+        <button (click)="changeAllSelectionStates(true)" *ngIf="selectMultiple" mat-button><span
+          class="material-icons">done_all</span>
+          Select all
+        </button>
+        <mat-form-field [ngClass]="{'mat-select-no-label' : filterSelectHasValue}" appearance="fill" class="filters-select">
+          <mat-label>Filters</mat-label>
+          <mat-select #filterOption (selectionChange)="onFilterSelect($event.value)">
+            <mat-option value="All">All {{pageTitle}}</mat-option>
+            <mat-option value="0">Enabled</mat-option>
+            <mat-option value="1">Disabled</mat-option>
+            <mat-option value="2">PKCE only</mat-option>
+            <mat-option value="3">With offline access</mat-option>
+            <mat-option value="4">With client secrets</mat-option>
+            <mat-option value="5">With browser access tokens</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox (change)="selectMultipleToggle()" [checked]="selectMultiple" class="mx-3">Multiple</mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="table-wrapper">
+    <table (matSortChange)="sortData($event)" [dataSource]="rows" class="identity-table" mat-table matSort>
+      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+      <tr (click)="selectRow(row)"
+          *matRowDef="let row; columns: displayedColumns;"
+          [ngClass]="{'notReadOnly': !row.isReadOnly, 'selected' : row.selected, 'expired': !row.selected && row.expiresAt !== null && dateTime.fromISO(row.expiresAt) < dateTime.utc()}"
+          class="table-row"
+          mat-row></tr>
+      <ng-container matColumnDef="selected">
+        <th *matHeaderCellDef mat-header-cell></th>
+        <td *matCellDef="let element" mat-cell>
+          <mat-checkbox [checked]="element.selected" [disabled]="element['isReadOnly']" class="no-pointer-events"></mat-checkbox>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="enabled">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="enabled">Enabled</th>
+        <td *matCellDef="let element" mat-cell>{{element.enabled ? 'Yes' : 'No'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="name">Name</th>
+        <td *matCellDef="let element" mat-cell>{{element.name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="displayName">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="displayName">Display name</th>
+        <td *matCellDef="let element" mat-cell>{{element.displayName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="description">Description</th>
+        <td *matCellDef="let element" mat-cell>{{element.description}}</td>
+      </ng-container>
+      <ng-container matColumnDef="clientUri">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="clientUri">Client URI</th>
+        <td *matCellDef="let element" mat-cell>{{element.clientUri}}</td>
+      </ng-container>
+      <ng-container matColumnDef="accessTokenLifetime">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="accessTokenLifetime">Access Token Lifetime (min.)</th>
+        <td *matCellDef="let element" mat-cell>{{element.accessTokenLifetime | number}}</td>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header="created">Created</th>
+        <td *matCellDef="let element" mat-cell>{{element.created | date: 'short'}}</td>
+      </ng-container>
+    </table>
+  </div>
+  <mat-paginator (page)="onTablePageChange($event)" [length]="totalItems"
+                 [pageSizeOptions]="[10, 15, 25, 100]"
+                 [pageSize]="queryParams.pageSize"
+                 [showFirstLastButtons]=true
+                 class="mat-paginator-sticky">
+  </mat-paginator>
+</div>
+
+
+<div *ngIf="isFormVisible" class="form-pop-up">
+  <div class="form-wrapper">
+    <button (click)="closeEditPanel()" class="close-button" mat-button><span class="material-icons-sharp">close</span></button>
+    <div class="form-title">
+      <div *ngIf="addMode">{{'New ' + pageTitle.substring(0, pageTitle.length - 1)}}</div>
+      <div *ngIf="!addMode">{{'Edit ' + itemSelected.displayName ? itemSelected.displayName : itemSelected.name}}</div>
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="editForm" class="identity-control-edit-form" novalidate>
+      <mat-card-content>
+        <mat-form-field appearance="outline">
+          <mat-label>Display name</mat-label>
+          <input formControlName="displayName" matInput>
+          <mat-error *ngIf="editForm.controls['displayName'].hasError('required')">
+            Display name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input formControlName="name" matInput>
+          <mat-error *ngIf="editForm.controls['name'].hasError('required')">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea formControlName="description" matInput></textarea>
+          <mat-error *ngIf="editForm.controls['description'].hasError('required')">
+            Description is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Client URI</mat-label>
+          <input formControlName="clientUri" matInput>
+          <mat-error *ngIf="editForm.controls['clientUri'].hasError('required')">
+            Client URI is required
+          </mat-error>
+          <mat-error *ngIf="editForm.controls['clientUri'].hasError('pattern')">
+            Invalid Client URI
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Access token lifetime</mat-label>
+          <input formControlName="accessTokenLifetime" matInput min="1" type="number">
+          <mat-hint>In minutes</mat-hint>
+          <mat-error *ngIf="editForm.controls['accessTokenLifetime'].hasError('required')">
+            Access token lifetime is required
+          </mat-error>
+          <mat-error *ngIf="editForm.controls['accessTokenLifetime'].hasError('min')">
+            Access token lifetime must be atlest 1 minute
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Api scopes</mat-label>
+          <mat-select [formControl]="apiScopesFormControl" multiple>
+            <mat-option *ngFor="let apiScope of apiScopesOptions | async" [value]="apiScope.value">{{apiScope.text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="checkboxes">
+          <mat-checkbox formControlName="requirePkce">
+            Require PKCE
+          </mat-checkbox>
+          <mat-checkbox formControlName="requireClientSecret">
+            Require client secret
+          </mat-checkbox>
+          <mat-checkbox formControlName="allowOfflineAccess">
+            Allow offline access
+          </mat-checkbox>
+          <mat-checkbox formControlName="allowAccessTokensViaBrowser">
+            Allow access tokens via browser
+          </mat-checkbox>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [disabled]="!editForm.valid" class="submit-button" color="primary"
+                mat-raised-button type="submit">
+          {{addMode ? 'Submit' : 'Save'}}
+        </button>
+      </mat-card-actions>
+    </form>
+  </div>
+</div>
+<client-children (closePanel)="toggleManagePanel()" *ngIf="isManagingChildren" [childType]="childTypeManaged"
+                 [clientId]="itemSelected.id"></client-children>

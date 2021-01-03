@@ -1,0 +1,52 @@
+<div class="form-pop-up">
+  <div>
+    <button (click)="onPanelClose()" class="close-button" mat-button><span class="material-icons-sharp">close</span></button>
+    <div class="form-title">
+      <div>{{'Manage ' + title + 's'}}</div>
+    </div>
+  </div>
+  <div [ngClass]="{'focused': showSearchInputBorder}" class="search-container">
+    <div class="search-content">
+      <input #searchInput (blur)="onSearchBlur()"
+             (focus)="onSearchInputFocus()"
+             (input)="searchInputEvent.next($event.target.value)"
+             [placeholder]="searchPlaceholder" name="searchInput" type="text"/>
+      <span *ngIf="!searchHasValue" class="material-icons search-icon">search</span>
+      <span (click)="clearSearchInput()" *ngIf="searchHasValue" class="material-icons search-icon clear-button">close</span>
+    </div>
+  </div>
+  <div class="add-new-wrapper">
+    <mat-form-field *ngIf="childType !== 0" class="example-form-field">
+      <mat-label>{{'New ' + title}}</mat-label>
+      <input #valueInput (keydown.enter)="addValue()" [(ngModel)]="valueToAdd" matInput type="text">
+      <button (click)="valueToAdd=''" *ngIf="valueToAdd" aria-label="Clear" mat-button mat-icon-button matSuffix>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field *ngIf="childType === 0" [ngClass]="{'mat-select-no-label' : filterSelectHasValue}" appearance="fill"
+                    class="filters-select">
+      <mat-label>Filters</mat-label>
+      <mat-select (selectionChange)="onFilterSelect($event.value)">
+        <mat-option *ngFor="let option of grantTypeOptions" [value]="option.value">{{option.text}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="addValue()" [disabled]="!valueToAdd || valueToAdd === ' '" mat-button><span class="material-icons">add</span>
+      Add
+    </button>
+  </div>
+  <div class="table-wrapper">
+    <table [dataSource]="rows" class="identity-table" mat-table>
+      <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" class="table-row" mat-row></tr>
+      <ng-container matColumnDef="value">
+        <th *matHeaderCellDef mat-header-cell>Value</th>
+        <td *matCellDef="let element" mat-cell>{{element.value}}</td>
+      </ng-container>
+      <ng-container matColumnDef="controls">
+        <th *matHeaderCellDef mat-header-cell></th>
+        <td *matCellDef="let element" mat-cell><span (click)="deleteChild(element.id)" class="material-icons identity-control-red">delete_forever</span>
+        </td>
+      </ng-container>
+    </table>
+  </div>
+</div>

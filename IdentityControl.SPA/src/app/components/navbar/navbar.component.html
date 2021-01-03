@@ -1,0 +1,48 @@
+<div class="navbar-wrapper" [ngClass]="{'retracted': !isExpanded}">
+  <!--  <div class="navbar-top">-->
+  <!--    <div class="search-container">-->
+  <!--      <div class="search-content">-->
+  <!--        <input type="text" placeholder="Search for anything ..."/>-->
+  <!--        <span class="material-icons search-icon">search</span>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <div class="navbar-middle">
+    <navbar-item
+      [item]="users"
+      [isExpanded]="isExpanded"
+    ></navbar-item>
+
+    <navbar-item
+      [item]="identityServer"
+      [subItems]="identityServerSubItems"
+      [isExpanded]="isExpanded"
+    ></navbar-item>
+
+    <navbar-item
+      [item]="diagnostics"
+      [subItems]="diagnosticsSubItems"
+      [isExpanded]="isExpanded"
+    ></navbar-item>
+
+    <!--    <navbar-item-->
+    <!--      title="Management"-->
+    <!--      description="Control over anything"-->
+    <!--      materialIcon="supervisor_account"-->
+    <!--      url="/identity-server/user"-->
+    <!--    ></navbar-item>-->
+  </div>
+  <div class="separator"></div>
+  <div class="navbar-footer" [ngClass]="{'retracted' : !isExpanded}">
+    <div class="app-settings">
+      <span [matTooltip]="isExpanded ? null : 'Application settings'" matTooltipPosition="right" matTooltipShowDelay="400"
+            class="material-icons-outlined settings-icon">settings</span>
+      <div *ngIf="isExpanded" class="app-settings-text">
+        Application settings
+      </div>
+    </div>
+    <span [matTooltip]="isExpanded ? 'Show less information' : 'Show more information'" matTooltipPosition="right"
+          matTooltipShowDelay="400" (click)="onExpandControlClick()" class="material-icons retract-icon"
+          [ngClass]="{'right': !isExpanded}">first_page</span>
+  </div>
+</div>

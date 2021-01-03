@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>An error has occurred!</h1>
+<div mat-dialog-content>
+  <p *ngIf="data.status" id="status-code">
+    <b>{{data.status}}</b>
+  </p>
+
+  <div *ngIf="data.type === 'Http'" class="error-message">
+    {{data.content}}
+  </div>
+
+  <pre *ngIf="data.type === 'Exception' || data.type === 'TypeScript'" class="error-message">
+      {{data.content}}
+    </pre>
+
+  <div *ngIf="data.type === 'ApiValidation'" class="error-message centered">
+    <p *ngFor="let error of data.content">{{error}}</p>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button (click)="close()" color="primary" mat-raised-button>
+    Close
+  </button>
+</div>

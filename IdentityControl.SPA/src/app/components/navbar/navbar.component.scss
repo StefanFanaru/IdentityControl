@@ -1,0 +1,161 @@
+.navbar-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 250px;
+  height: calc(100vh - 80px);
+  top: 80px;
+  background-color: #EAEAEA;
+  animation-name: expand;
+  animation-duration: .2s;
+  user-select: none;
+
+  &.retracted {
+    width: 50px;
+    animation-name: retract;
+    animation-duration: .2s;
+    user-select: none;
+
+  }
+
+  .navbar-top {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-middle {
+    flex-grow: 1;
+  }
+
+  div {
+    width: 100%;
+  }
+}
+
+.separator {
+  background-color: #c4c4c4;
+  height: 1px;
+  margin: 0 auto;
+  width: 85% !important;
+  display: inline;
+}
+
+.navbar-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+
+  .app-settings {
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    min-width: 205px;
+    color: #606060;
+    height: 100%;
+    text-align: center;
+    width: 84%;
+
+    .settings-icon {
+    }
+
+    .app-settings-text {
+      margin-left: 2px;
+      display: inline;
+      font-size: 16px;
+      width: 80%;
+    }
+
+    &:hover {
+      background-color: #dbdbdb;
+      cursor: pointer;
+    }
+  }
+
+  .retract-icon {
+    color: var(--identity-control-blue);
+    transform: rotate(0deg);
+    animation-name: rotate-right;
+    animation-duration: 0.2s;
+    user-select: none;
+    margin-right: 15px;
+    font-size: 30px;
+
+    &.right {
+      transform: rotate(180deg);
+      animation-name: rotate-left;
+      animation-duration: 0.2s;
+    }
+
+    &:hover {
+      color: #026abe;
+      cursor: pointer;
+    }
+  }
+
+  &.retracted {
+    flex-direction: column;
+    height: 85px;
+    padding: 12px 12px;
+
+    .app-settings {
+      padding-left: unset;
+      min-width: unset;
+      width: 100%;
+
+      .settings-icon {
+      }
+
+      &:hover {
+        background-color: unset;
+        color: #484848;
+        cursor: pointer;
+      }
+    }
+
+    .retract-icon {
+      margin-right: 3px;
+    }
+  }
+
+}
+
+
+@keyframes rotate-left {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(180deg)
+  }
+}
+
+@keyframes rotate-right {
+  from {
+    transform: rotate(180deg)
+  }
+  to {
+    transform: rotate(0deg)
+  }
+}
+
+@keyframes retract {
+  from {
+    width: 250px;
+  }
+  to {
+    width: 50px;
+  }
+}
+
+@keyframes expand {
+  from {
+    width: 50px;
+  }
+  to {
+    width: 250px;
+  }
+}
