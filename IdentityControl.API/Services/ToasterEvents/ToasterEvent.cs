@@ -1,7 +1,7 @@
 ﻿using IdentityControl.API.Extensions;
-using IdentityControl.API.Services.ToasterEvents;
+using IdentityControl.API.Services.SignalR;
 
-namespace IdentityControl.API.Services.SignalR
+namespace IdentityControl.API.Services.ToasterEvents
 {
     public class ToasterEvent : IToasterEvent
     {

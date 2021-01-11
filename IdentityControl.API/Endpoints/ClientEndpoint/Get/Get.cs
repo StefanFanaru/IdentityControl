@@ -32,7 +32,10 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.Get
                 .SelectDetailedClientDto()
                 .FirstOrDefaultAsync(cancellationToken);
 
-            if (response == null) return NotFound($"Instance with ID {id} was not found");
+            if (response == null)
+            {
+                return NotFound($"Instance with ID {id} was not found");
+            }
 
             return response;
         }

@@ -14,7 +14,10 @@ namespace IdentityControl.API.Services.SignalR
         {
             lock (userMap)
             {
-                if (!userMap.ContainsKey(userId)) userMap[userId] = new HashSet<string>();
+                if (!userMap.ContainsKey(userId))
+                {
+                    userMap[userId] = new HashSet<string>();
+                }
 
                 userMap[userId].Add(connectionId);
                 Log.Debug($"User {userId.GetHumanReadableId()} has established a connection with the client");
@@ -26,12 +29,14 @@ namespace IdentityControl.API.Services.SignalR
             lock (userMap)
             {
                 foreach (var userId in userMap.Keys)
+                {
                     if (userMap.ContainsKey(userId) && userMap[userId].Contains(connectionId))
                     {
                         userMap[userId].Remove(connectionId);
                         Log.Debug($"User {userId.GetHumanReadableId()} has disconnected from the client");
                         break;
                     }
+                }
             }
         }
 

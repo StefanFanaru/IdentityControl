@@ -1,4 +1,4 @@
-﻿namespace IdentityControl.Data.Constants
+﻿namespace IdentityControl.API.Common.Constants
 {
     public static class Claims
     {

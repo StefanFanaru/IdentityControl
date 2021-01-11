@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
-using IdentityControl.API.Common;
 using IdentityControl.API.Common.Constants;
 using IdentityControl.API.Data;
 using IdentityControl.API.Endpoints.ApiScopeEndpoint;
@@ -35,10 +34,12 @@ namespace IdentityControl.API.Services.ApiScopes
             };
 
             if (!string.IsNullOrEmpty(searchTerm))
+            {
                 query = query.Where(x => x.Description.Contains(searchTerm)
                                          || x.Name.Contains(searchTerm)
                                          || x.Description.Contains(searchTerm)
                                          || x.DisplayName.Contains(searchTerm));
+            }
 
             return query;
         }

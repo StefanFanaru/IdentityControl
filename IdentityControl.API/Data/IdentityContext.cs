@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using IdentityControl.Data.Entities;
+using IdentityControl.API.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

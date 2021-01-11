@@ -2,10 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
-using IdentityControl.API.Common;
 using IdentityControl.API.Common.Constants;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -34,7 +32,9 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.Update
                 .CountAsync(cancellationToken);
 
             if (clientsCount == 0 || clientsCount < apiScopesIds.Length)
+            {
                 return NotFound("One ore more instances where not found");
+            }
 
             await _repository.Query()
                 .Where(x => apiScopesIds.ToList().Contains(x.Id))

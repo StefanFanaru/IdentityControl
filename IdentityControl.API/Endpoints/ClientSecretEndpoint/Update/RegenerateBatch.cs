@@ -2,11 +2,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
-using IdentityControl.API.Common;
 using IdentityControl.API.Common.Constants;
 using IdentityControl.API.Common.Extensions;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -40,7 +38,9 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Update
                 .CountAsync(cancellationToken);
 
             if (secretsCount == 0 || secretsCount < request.Length)
+            {
                 return NotFound("One ore more instances could not be updated");
+            }
 
             var toaster = new ToasterEvent(nameof(ClientSecret), ToasterType.Success, ToasterVerbs.Updated, null, request.Length);
 
@@ -49,7 +49,10 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Update
                 var validation = await _validator
                     .ValidateAsync<RegenerateClientSecretRequest, UpdateClientSecretResponse, RegenerateRequestValidator>
                         (item, toaster, cancellationToken);
-                if (validation.Failed) return validation.Response;
+                if (validation.Failed)
+                {
+                    return validation.Response;
+                }
             }
 
             if (_repository.Query().Any(e => request.Any(x => x.Value == e.Value)

@@ -37,10 +37,12 @@ namespace IdentityControl.API.Services.ApiResourceSecrets
             };
 
             if (!string.IsNullOrEmpty(searchTerm))
+            {
                 query = query.Where(x => x.Description.Contains(searchTerm)
                                          || x.Value.Contains(searchTerm)
                                          || x.Description.Contains(searchTerm)
                                          || x.ApiResource.DisplayName.Contains(searchTerm));
+            }
 
             return query;
         }

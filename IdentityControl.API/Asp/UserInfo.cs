@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using IdentityControl.Data.Constants;
+using IdentityControl.API.Common.Constants;
 
 namespace IdentityControl.API.Asp
 {

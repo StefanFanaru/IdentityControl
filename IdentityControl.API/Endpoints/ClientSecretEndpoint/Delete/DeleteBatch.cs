@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -34,7 +33,10 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Delete
                 .Where(x => secretIds.ToList().Contains(x.Id))
                 .CountAsync(cancellationToken);
 
-            if (secretsCount == 0 || secretsCount < secretIds.Length) return NotFound("One ore more instances where not found");
+            if (secretsCount == 0 || secretsCount < secretIds.Length)
+            {
+                return NotFound("One ore more instances where not found");
+            }
 
             await _repository.Query().Where(x => secretIds.Contains(x.Id))
                 .DeleteAsync(cancellationToken);

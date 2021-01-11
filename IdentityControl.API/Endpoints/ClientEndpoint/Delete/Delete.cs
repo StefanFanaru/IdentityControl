@@ -2,10 +2,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
-using IdentityControl.API.Common;
 using IdentityControl.API.Common.Constants;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -33,7 +31,10 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.Delete
                 .Where(e => e.Id == id && e.ClientId != AppConstants.ReadOnlyEntities.AngularClient)
                 .FirstOrDefaultAsync(cancellationToken);
 
-            if (entity == null) return NotFound($"Instance with ID {id} was not found");
+            if (entity == null)
+            {
+                return NotFound($"Instance with ID {id} was not found");
+            }
 
             _repository.Delete(entity);
             var toaster = new ToasterEvent(nameof(Client), ToasterType.Info, ToasterVerbs.Deleted, entity.ClientName);

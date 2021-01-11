@@ -2,7 +2,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
-using IdentityControl.API.Common;
 using IdentityControl.API.Common.Constants;
 using IdentityControl.API.Data;
 using IdentityServer4.EntityFramework.Entities;
@@ -38,7 +37,10 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
                 IsReadOnly = AppConstants.ReadOnlyEntities.AllApiScopes.Contains(e.Name)
             }).FirstOrDefaultAsync(cancellationToken);
 
-            if (response == null) return NotFound($"Instance with ID {id} was not found");
+            if (response == null)
+            {
+                return NotFound($"Instance with ID {id} was not found");
+            }
 
             return response;
         }

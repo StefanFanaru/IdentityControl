@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -38,8 +37,6 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Insert
             {
                 return validation.Response;
             }
-
-            ;
 
             if (_repository.Query().Any(e => e.Name == request.Name))
             {

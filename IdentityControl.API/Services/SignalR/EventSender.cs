@@ -30,6 +30,7 @@ namespace IdentityControl.API.Services.SignalR
                 if (connections != null && connections.Count > 0)
                 {
                     foreach (var connection in connections)
+                    {
                         try
                         {
                             await _hubContext.Clients.Clients(connection).SendAsync("socket", eventJson);
@@ -38,6 +39,7 @@ namespace IdentityControl.API.Services.SignalR
                         {
                             Log.Error(e.Message);
                         }
+                    }
 
                     Log.Debug($"Send event to user {userId.GetHumanReadableId()}");
                 }

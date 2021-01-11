@@ -49,11 +49,13 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.Get
             };
 
             if (!string.IsNullOrEmpty(searchTerm))
+            {
                 query = query.Where(x => x.Description.Contains(searchTerm)
                                          || x.ClientId.Contains(searchTerm)
                                          || x.ClientUri.Contains(searchTerm)
                                          || x.Description.Contains(searchTerm)
                                          || x.ClientName.Contains(searchTerm));
+            }
 
             return await query.SelectBasicClientDto()
                 .Order(sortColumn ?? "DisplayName", sortDirection)

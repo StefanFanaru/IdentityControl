@@ -40,7 +40,10 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Get
                 })
                 .FirstOrDefaultAsync(cancellationToken);
 
-            if (response == null) return NotFound($"Instance with ID {id} was not found");
+            if (response == null)
+            {
+                return NotFound($"Instance with ID {id} was not found");
+            }
 
             return response;
         }

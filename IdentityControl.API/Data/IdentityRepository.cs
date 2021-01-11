@@ -30,7 +30,10 @@ namespace IdentityControl.API.Data
         {
             var entity = await _context.Set<T>().FindAsync(id);
 
-            if (entity == null) throw new Exception($"The entity of type {typeof(T)} with id {id} was not found.");
+            if (entity == null)
+            {
+                throw new Exception($"The entity of type {typeof(T)} with id {id} was not found.");
+            }
 
             return entity;
         }
@@ -58,7 +61,10 @@ namespace IdentityControl.API.Data
 
         public void Delete(T entity)
         {
-            if (_context.Entry(entity).State == EntityState.Detached) _context.Set<T>().Attach(entity);
+            if (_context.Entry(entity).State == EntityState.Detached)
+            {
+                _context.Set<T>().Attach(entity);
+            }
 
             _context.Set<T>().Remove(entity);
         }

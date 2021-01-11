@@ -3,11 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
-using IdentityControl.API.Common;
 using IdentityControl.API.Common.Constants;
 using IdentityControl.API.Data;
 using IdentityControl.API.Endpoints.ClientEndpoint.Dtos;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -55,11 +53,16 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.ClientChildren
                             ClientValidators.ClientChildAssignmentValidator>
                         (request, toaster, cancellationToken);
 
-            if (validation.Failed) return validation.Response;
+            if (validation.Failed)
+            {
+                return validation.Response;
+            }
 
             if (!_clientRepository.Query()
                 .Any(e => e.Id == id && e.ClientId != AppConstants.ReadOnlyEntities.AngularClient))
+            {
                 return NotFound(id);
+            }
 
             switch (request.Type)
             {

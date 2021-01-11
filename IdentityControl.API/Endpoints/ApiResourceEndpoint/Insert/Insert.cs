@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;

@@ -32,7 +32,10 @@ namespace IdentityControl.API.Asp
             {
                 response.Succeeded = false;
 
-                foreach (var failure in validation.Errors) response.Errors.Add(failure.ErrorMessage);
+                foreach (var failure in validation.Errors)
+                {
+                    response.Errors.Add(failure.ErrorMessage);
+                }
 
                 await _eventSender.SendAsync(toasterEvent.TransformInFailure());
 

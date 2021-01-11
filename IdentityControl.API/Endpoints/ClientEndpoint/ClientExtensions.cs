@@ -41,36 +41,6 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint
                 AllowOfflineAccess = e.AllowOfflineAccess,
                 RequireClientSecret = e.RequireClientSecret,
                 AllowAccessTokensViaBrowser = e.AllowAccessTokensViaBrowser
-                // AllowedScopes = e.AllowedScopes.Select(s => new ClientScopeDto
-                // {
-                //     Id = s.Id,
-                //     Scope = s.Scope
-                // }),
-                // ClientSecrets = e.ClientSecrets.Select(s => new ClientSecretDto
-                // {
-                //     Id = s.Id,
-                //     Value = s.Value
-                // }),
-                // RedirectUris = e.RedirectUris.Select(r => new ClientRedirectUriDto
-                // {
-                //     Id = r.Id,
-                //     RedirectUri = r.RedirectUri
-                // }),
-                // AllowedCorsOrigins = e.AllowedCorsOrigins.Select(c => new ClientCorsOriginDto
-                // {
-                //     Id = c.Id,
-                //     Origin = c.Origin
-                // }),
-                // AllowedGrantTypes = e.AllowedGrantTypes.Select(g => new ClientGrantTypeDto
-                // {
-                //     Id = g.Id,
-                //     GrantType = g.GrantType
-                // }),
-                // PostLogoutRedirectUris = e.PostLogoutRedirectUris.Select(p => new ClientPostLogoutRedirectUriDto
-                // {
-                //     Id = p.Id,
-                //     PostLogoutRedirectUri = p.PostLogoutRedirectUri
-                // })
             });
         }
     }

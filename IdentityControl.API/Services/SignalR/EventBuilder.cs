@@ -13,12 +13,10 @@ namespace IdentityControl.API.Services.SignalR
             var eventTypeString = model.EntityType.FormatType();
             var title = model.Verb.ToString();
             var message = $"{eventTypeString}{identifier} has been {eventVerb} successfully";
-            ;
 
             if (model.Count > 1)
             {
                 message = $"{model.Count} {eventTypeString}s were {eventVerb} successfully";
-                ;
             }
 
             if (model.ToasterType == ToasterType.Error)

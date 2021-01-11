@@ -1,9 +1,8 @@
 ﻿using System;
 using Ardalis.GuardClauses;
-using IdentityControl.Data.Entities.ValueObjects;
 using Microsoft.AspNetCore.Identity;
 
-namespace IdentityControl.Data.Entities
+namespace IdentityControl.API.Data.Entities
 {
     public class ApplicationUser : IdentityUser
     {

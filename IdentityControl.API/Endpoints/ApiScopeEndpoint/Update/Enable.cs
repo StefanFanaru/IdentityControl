@@ -2,10 +2,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
-using IdentityControl.API.Common;
 using IdentityControl.API.Common.Constants;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -30,7 +28,9 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Update
         public async Task<IActionResult> HandleAsync(int id, CancellationToken cancellationToken = default)
         {
             if (!_repository.Query().Any(e => e.Id == id && e.Name != AppConstants.ReadOnlyEntities.IdentityControlApiScope))
+            {
                 return NotFound($"Instance with ID {id} was not found");
+            }
 
             var entity = await _repository.Query().FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
 

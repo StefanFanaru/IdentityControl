@@ -40,7 +40,7 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
             apiScopes.AddRange(_identityResourceRepo.Query().Select(e => new BaseOption<string>
             {
                 Value = e.Name,
-                Text = e.DisplayName,
+                Text = e.DisplayName
             }));
 
             return apiScopes;
