@@ -13,6 +13,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class GetTableListByApiResource : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiResourceScope> _apiResourceScopeRepository;

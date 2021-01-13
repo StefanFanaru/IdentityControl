@@ -16,6 +16,7 @@ using static IdentityControl.API.Endpoints.ApiScopeEndpoint.ApiScopeValidators;
 namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Update
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Update : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiResourceScope> _apiResourceScopeRepo;

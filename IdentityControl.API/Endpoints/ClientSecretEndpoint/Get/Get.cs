@@ -13,6 +13,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Get : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ClientSecret> _secretRepository;

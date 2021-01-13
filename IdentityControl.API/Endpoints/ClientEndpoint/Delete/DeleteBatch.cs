@@ -15,6 +15,7 @@ using Z.EntityFramework.Plus;
 namespace IdentityControl.API.Endpoints.ClientEndpoint.Delete
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class DeleteBatch : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<Client> _repository;

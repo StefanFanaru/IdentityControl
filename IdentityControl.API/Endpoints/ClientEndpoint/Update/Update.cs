@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -16,6 +15,7 @@ using static IdentityControl.API.Endpoints.ClientEndpoint.ClientValidators;
 namespace IdentityControl.API.Endpoints.ClientEndpoint.Update
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Update : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<Client> _clientRepository;

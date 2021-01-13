@@ -13,6 +13,7 @@ using static IdentityControl.API.Endpoints.ApiResourceEndpoint.ApiResourceValida
 namespace IdentityControl.API.Endpoints.ApiResourceEndpoint.Insert
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Insert : BaseAsyncEndpoint<InsertApiResourceRequest, InsertApiResourceResponse>
     {
         private readonly IIdentityRepository<ApiResource> _apiResourceRepository;

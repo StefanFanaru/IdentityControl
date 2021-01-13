@@ -16,6 +16,7 @@ using static IdentityControl.API.Endpoints.ClientSecretEndpoint.ClientSecretVali
 namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Update
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class RegenerateBatch : BaseAsyncEndpoint<RegenerateClientSecretRequest[], UpdateClientSecretResponse>
     {
         private readonly IIdentityRepository<ClientSecret> _repository;

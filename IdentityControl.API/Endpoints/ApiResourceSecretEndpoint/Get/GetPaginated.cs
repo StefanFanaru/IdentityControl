@@ -15,6 +15,7 @@ using Z.EntityFramework.Plus;
 namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class GetPaginated : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiResourceSecret> _repository;

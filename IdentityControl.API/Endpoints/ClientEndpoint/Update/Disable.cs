@@ -14,6 +14,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ClientEndpoint.Update
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Disable : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<Client> _repository;

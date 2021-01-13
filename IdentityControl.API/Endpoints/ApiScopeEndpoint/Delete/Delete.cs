@@ -14,6 +14,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Delete
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Delete : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiScope> _repository;

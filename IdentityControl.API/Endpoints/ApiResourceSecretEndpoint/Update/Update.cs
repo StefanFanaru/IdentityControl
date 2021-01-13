@@ -15,6 +15,7 @@ using static IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.ApiResource
 namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Update
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Update : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiResourceSecret> _repository;

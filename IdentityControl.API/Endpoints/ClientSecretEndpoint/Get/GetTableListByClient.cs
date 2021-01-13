@@ -11,6 +11,7 @@ using static IdentityControl.API.Services.ClientSecrets.ClientSecretTableList;
 namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class GetTableListByClient : BaseAsyncEndpoint
     {
         private readonly IClientSecretTableList _tableList;

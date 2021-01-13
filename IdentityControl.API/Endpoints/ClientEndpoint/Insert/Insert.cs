@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using IdentityControl.API.Asp;
 using IdentityControl.API.Data;
-using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -15,6 +14,7 @@ using static IdentityControl.API.Endpoints.ClientEndpoint.ClientValidators;
 namespace IdentityControl.API.Endpoints.ClientEndpoint.Insert
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Insert : BaseAsyncEndpoint<InsertClientRequest, InsertClientResponse>
     {
         private readonly IIdentityRepository<Client> _clientRepository;

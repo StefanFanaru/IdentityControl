@@ -14,6 +14,7 @@ using Z.EntityFramework.Plus;
 namespace IdentityControl.API.Endpoints.ApiResourceEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class GetAll : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiResource> _repository;

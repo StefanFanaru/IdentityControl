@@ -16,6 +16,7 @@ using static IdentityControl.API.Endpoints.ClientSecretEndpoint.ClientSecretVali
 namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Insert
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class Insert : BaseAsyncEndpoint<InsertClientSecretRequest, InsertClientSecretResponse>
     {
         private readonly IIdentityRepository<ClientSecret> _repository;

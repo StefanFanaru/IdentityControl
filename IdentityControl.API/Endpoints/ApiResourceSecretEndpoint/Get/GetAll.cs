@@ -14,6 +14,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
+    [ApiExplorerSettings(GroupName = "IdentityServer")]
     public class GetAll : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiResourceSecret> _repository;
