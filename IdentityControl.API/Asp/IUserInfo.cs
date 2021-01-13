@@ -8,5 +8,6 @@
         string Email { get; }
         string Role { get; }
         string Name { get; }
+        string BlogId { get; }
     }
 }

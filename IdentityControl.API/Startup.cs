@@ -38,8 +38,8 @@ namespace IdentityControl.API
             services
                 .AddApiServices()
                 .AddAppDatabase(connectionString, migrationsAssembly)
-                // .AddAppScheduler()
-                .AddSwaggerConfiguration();
+                .AddSwaggerConfiguration()
+                .AddAuthorizationPolicies();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {
@@ -65,20 +65,6 @@ namespace IdentityControl.API
                         IssuerValidator = (issuer, token, parameters) => authority // to support Docker internal network
                     };
                 });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ApiScope", policy =>
-                {
-                    policy.RequireAuthenticatedUser();
-                    policy.RequireClaim("scope", "identity_control_full");
-                });
-
-                options.AddPolicy("AdminOnly",
-                    policyBuilder => policyBuilder
-                        .RequireAuthenticatedUser()
-                        .RequireClaim("role", "Administrator"));
-            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -107,13 +93,11 @@ namespace IdentityControl.API
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseSwagger();
-            app.ConfigureSwaggerUi(pathBase);
+            app.AddSwagger(pathBase);
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers()
-                    .RequireAuthorization("ApiScope");
+                endpoints.MapControllers();
                 endpoints.MapHub<EventHub>("/event-hub");
             });
         }

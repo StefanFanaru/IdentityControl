@@ -7,5 +7,6 @@
         public const string LastName = "last_name";
         public const string Email = "email";
         public const string Role = "role";
+        public const string BlogId = "blogId";
     }
 }

@@ -7,11 +7,15 @@ namespace IdentityControl.API.Asp
     {
         public UserInfo(ClaimsPrincipal user)
         {
-            Id = user.FindFirst(Claims.UserId).Value;
-            FirstName = user.FindFirst(Claims.FirstName).Value;
-            LastName = user.FindFirst(Claims.LastName).Value;
-            Email = user.FindFirst(Claims.Email).Value;
-            Role = user.FindFirst(Claims.Role).Value;
+            if (user != null)
+            {
+                Id = user.FindFirstValue(Claims.UserId);
+                FirstName = user.FindFirstValue(Claims.FirstName);
+                LastName = user.FindFirstValue(Claims.LastName);
+                Email = user.FindFirstValue(Claims.Email);
+                Role = user.FindFirstValue(Claims.Role);
+                BlogId = user.FindFirstValue(Claims.BlogId);
+            }
         }
 
         public string Id { get; }
@@ -19,6 +23,7 @@ namespace IdentityControl.API.Asp
         public string LastName { get; }
         public string Email { get; }
         public string Role { get; }
-        public string Name => $"{(FirstName ?? "?")[0]}.{LastName}";
+        public string Name => $"{FirstName} {LastName}";
+        public string BlogId { get; }
     }
 }
