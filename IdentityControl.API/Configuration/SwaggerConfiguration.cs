@@ -95,9 +95,21 @@ namespace IdentityControl.API.Configuration
 
         public static IApplicationBuilder AddSwagger(this IApplicationBuilder app, string pathBase)
         {
-            var identityControlUri = Configuration.GetValue<string>("ApplicationUrls:IdentityControl");
+            var apiUri = Configuration.GetValue<string>("ApplicationUrls:IdentityControl");
 
-            app.UseSwagger();
+            app.UseSwagger(options =>
+            {
+                if (!string.IsNullOrEmpty(pathBase))
+                {
+                    options.RouteTemplate = "swagger/{documentName}/swagger.json";
+                    options.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+                    {
+                        swaggerDoc.Servers = new List<OpenApiServer>
+                            {new OpenApiServer {Url = $"{apiUri}{pathBase}"}};
+                    });
+                }
+            });
+
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint($"{pathBase}/swagger/Internal/swagger.json", "Internal APIs");
@@ -106,7 +118,7 @@ namespace IdentityControl.API.Configuration
 
                 options.OAuthClientId("swagger_ui_identity_control");
                 options.OAuthAppName("IdentityControl API - Swagger");
-                options.OAuth2RedirectUrl($"{identityControlUri}{pathBase}/swagger/oauth2-redirect.html");
+                options.OAuth2RedirectUrl($"{apiUri}{pathBase}/swagger/oauth2-redirect.html");
             });
 
             return app;
