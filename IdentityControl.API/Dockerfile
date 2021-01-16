@@ -8,8 +8,11 @@ WORKDIR /src
 
 COPY "Brevien.sln" "Brevien.sln"
 
-COPY "Services/Blog/Blog.API/Blog.API.csproj" "Services/Blog/Blog.API/Blog.API.csproj"
-COPY "Services/Blog/Blog.IntegrationTests/Blog.IntegrationTests.csproj" "Services/Blog/Blog.IntegrationTests/Blog.IntegrationTests.csproj"
+COPY "EventBus/EventBus/EventBus.csproj" "EventBus/EventBus/EventBus.csproj"
+COPY "EventBus/EventBusRabbitMQ/EventBusRabbitMQ.csproj" "EventBus/EventBusRabbitMQ/EventBusRabbitMQ.csproj"
+COPY "EventBus/IntegrationEventLog/IntegrationEventLog.csproj" "EventBus/IntegrationEventLog/IntegrationEventLog.csproj"
+COPY "Services/Blogging/Blogging.API/Blogging.API.csproj" "Services/Blogging/Blogging.API/Blogging.API.csproj"
+COPY "Services/Blogging/Blogging.IntegrationTests/Blogging.IntegrationTests.csproj" "Services/Blogging/Blogging.IntegrationTests/Blogging.IntegrationTests.csproj"
 COPY "Services/IdentityControl/IdentityControl.API/IdentityControl.API.csproj" "Services/IdentityControl/IdentityControl.API/IdentityControl.API.csproj"
 COPY "Services/IdentityServer/IdentityServer.API/IdentityServer.API.csproj" "Services/IdentityServer/IdentityServer.API/IdentityServer.API.csproj"
 COPY "Services/Posting/Posting.API/Posting.API.csproj" "Services/Posting/Posting.API/Posting.API.csproj"
