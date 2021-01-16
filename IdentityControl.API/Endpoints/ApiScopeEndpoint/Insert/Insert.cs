@@ -13,7 +13,7 @@ using static IdentityControl.API.Endpoints.ApiScopeEndpoint.ApiScopeValidators;
 namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Insert
 {
     [Authorize(Policy = "AdminOnly")]
-    [ApiExplorerSettings(GroupName = "IdentityServer")]
+    [ApiExplorerSettings(GroupName = "Internal")]
     public class Insert : BaseAsyncEndpoint<InsertApiScopeRequest, InsertApiScopeResponse>
     {
         private readonly IIdentityRepository<ApiScope> _repository;

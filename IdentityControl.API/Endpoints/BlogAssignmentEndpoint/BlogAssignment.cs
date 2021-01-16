@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace IdentityControl.API.Endpoints.BlogAssignmentEndpoint
 {
-    [Authorize(Policy = "BlogAPI-SecretKey")]
+    [Authorize(Policy = "BlogSecretKey")]
     [ApiExplorerSettings(GroupName = "Integration")]
     public class BlogAssignment : BaseAsyncEndpoint
     {

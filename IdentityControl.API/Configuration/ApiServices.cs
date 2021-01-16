@@ -65,7 +65,7 @@ namespace IdentityControl.API.Configuration
             return services;
         }
 
-        public static IServiceCollection AddAuthorizationPolicies(this IServiceCollection services)
+        public static IServiceCollection AddAuth(this IServiceCollection services)
         {
             Dictionary<string, string> GetSecretKeys(string section)
             {
@@ -84,12 +84,6 @@ namespace IdentityControl.API.Configuration
                     .RequireClaim("scope", "identity_control_full")
                     .Build();
 
-                options.AddPolicy("ApiScope", policy =>
-                {
-                    policy.RequireAuthenticatedUser();
-                    policy.RequireClaim("scope", "identity_control_full");
-                });
-
                 options.AddPolicy("AdminOnly",
                     policy => policy
                         .RequireAuthenticatedUser()
@@ -98,7 +92,7 @@ namespace IdentityControl.API.Configuration
 
                 foreach (var secretKey in secretKeys)
                 {
-                    options.AddPolicy($"{secretKey.Key}-SecretKey",
+                    options.AddPolicy($"{secretKey.Key}SecretKey",
                         policyBuilder => policyBuilder.AddRequirements(new SecretKeyRequirement(secretKey.Value)));
                 }
             });

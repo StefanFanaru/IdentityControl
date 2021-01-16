@@ -15,7 +15,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ClientEndpoint.ClientChildren
 {
     [Authorize(Policy = "AdminOnly")]
-    [ApiExplorerSettings(GroupName = "IdentityServer")]
+    [ApiExplorerSettings(GroupName = "Internal")]
     public class SearchClientChildren : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ClientCorsOrigin> _corsRepository;

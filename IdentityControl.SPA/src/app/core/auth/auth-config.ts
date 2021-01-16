@@ -7,7 +7,7 @@ export const authConfig: AuthConfig = {
   responseType: 'code',
   redirectUri: window.origin + '/index.html',
   silentRefreshRedirectUri: window.origin + '/silent-refresh.html',
-  scope: 'openid profile identity_control_full blog_api_full',
+  scope: 'openid profile identity_control_full blog_api_full posting_api_full',
   useSilentRefresh: true,
   timeoutFactor: 0.9,
   sessionChecksEnabled: true,

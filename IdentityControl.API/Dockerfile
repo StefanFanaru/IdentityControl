@@ -9,10 +9,14 @@ WORKDIR /src
 COPY "Brevien.sln" "Brevien.sln"
 
 COPY "Services/Blog/Blog.API/Blog.API.csproj" "Services/Blog/Blog.API/Blog.API.csproj"
-COPY "Services/Blog/Blog.FunctionalTests/Blog.FunctionalTests.csproj" "Services/Blog/Blog.FunctionalTests/Blog.FunctionalTests.csproj"
+COPY "Services/Blog/Blog.IntegrationTests/Blog.IntegrationTests.csproj" "Services/Blog/Blog.IntegrationTests/Blog.IntegrationTests.csproj"
 COPY "Services/IdentityControl/IdentityControl.API/IdentityControl.API.csproj" "Services/IdentityControl/IdentityControl.API/IdentityControl.API.csproj"
 COPY "Services/IdentityServer/IdentityServer.API/IdentityServer.API.csproj" "Services/IdentityServer/IdentityServer.API/IdentityServer.API.csproj"
-
+COPY "Services/Posting/Posting.API/Posting.API.csproj" "Services/Posting/Posting.API/Posting.API.csproj"
+COPY "Services/Posting/Posting.Core/Posting.Core.csproj" "Services/Posting/Posting.Core/Posting.Core.csproj"
+COPY "Services/Posting/Posting.Infrastructure/Posting.Infrastructure.csproj" "Services/Posting/Posting.Infrastructure/Posting.Infrastructure.csproj"
+COPY "Services/Posting/Posting.IntegrationTests/Posting.IntegrationTests.csproj" "Services/Posting/Posting.IntegrationTests/Posting.IntegrationTests.csproj"
+COPY "Services/Posting/Posting.UnitTests/Posting.UnitTests.csproj" "Services/Posting/Posting.UnitTests/Posting.UnitTests.csproj"
 COPY "docker-compose.dcproj" "docker-compose.dcproj"
 
 RUN dotnet restore "Brevien.sln"

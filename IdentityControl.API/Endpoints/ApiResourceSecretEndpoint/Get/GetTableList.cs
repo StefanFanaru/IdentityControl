@@ -10,7 +10,7 @@ using static IdentityControl.API.Services.ApiResourceSecrets.ApiResourceSecretTa
 namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
-    [ApiExplorerSettings(GroupName = "IdentityServer")]
+    [ApiExplorerSettings(GroupName = "Internal")]
     public class GetTableList : BaseAsyncEndpoint
     {
         private readonly IApiResourceSecretTableList _tableList;

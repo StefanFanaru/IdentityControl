@@ -12,7 +12,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Delete
 {
     [Authorize(Policy = "AdminOnly")]
-    [ApiExplorerSettings(GroupName = "IdentityServer")]
+    [ApiExplorerSettings(GroupName = "Internal")]
     public class Delete : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiResourceSecret> _repository;

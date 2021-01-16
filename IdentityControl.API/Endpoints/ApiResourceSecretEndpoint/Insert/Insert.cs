@@ -16,7 +16,7 @@ using static IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.ApiResource
 namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Insert
 {
     [Authorize(Policy = "AdminOnly")]
-    [ApiExplorerSettings(GroupName = "IdentityServer")]
+    [ApiExplorerSettings(GroupName = "Internal")]
     public class Insert : BaseAsyncEndpoint<InsertApiResourceSecretRequest, InsertApiResourceSecretResponse>
     {
         private readonly IIdentityRepository<ApiResourceSecret> _repository;

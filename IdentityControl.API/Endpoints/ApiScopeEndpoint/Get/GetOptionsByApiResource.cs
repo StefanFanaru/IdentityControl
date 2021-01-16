@@ -13,7 +13,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
 {
     [Authorize(Policy = "AdminOnly")]
-    [ApiExplorerSettings(GroupName = "IdentityServer")]
+    [ApiExplorerSettings(GroupName = "Internal")]
     public class GetOptionsByApiResource : BaseAsyncEndpoint
     {
         private readonly IIdentityRepository<ApiScope> _apiScopeRepository;

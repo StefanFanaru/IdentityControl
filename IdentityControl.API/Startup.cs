@@ -33,13 +33,13 @@ namespace IdentityControl.API
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             var connectionString = Configuration["ConnectionString"];
             var migrationsAssembly = typeof(IdentityContext).GetTypeInfo().Assembly.GetName().Name;
-            var authority = Configuration.GetSection("ApplicationUrls:IdentityAPI").Value;
+            var authority = Configuration.GetSection("ApplicationUrls:IdentityServer").Value;
 
             services
                 .AddApiServices()
                 .AddAppDatabase(connectionString, migrationsAssembly)
                 .AddSwaggerConfiguration()
-                .AddAuthorizationPolicies();
+                .AddAuth();
 
             services.AddControllers().AddNewtonsoftJson(options =>
             {
@@ -89,12 +89,9 @@ namespace IdentityControl.API
             }
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.AddSwagger(pathBase);
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

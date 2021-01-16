@@ -14,7 +14,7 @@ using static IdentityControl.API.Endpoints.ClientEndpoint.ClientValidators;
 namespace IdentityControl.API.Endpoints.ClientEndpoint.Insert
 {
     [Authorize(Policy = "AdminOnly")]
-    [ApiExplorerSettings(GroupName = "IdentityServer")]
+    [ApiExplorerSettings(GroupName = "Internal")]
     public class Insert : BaseAsyncEndpoint<InsertClientRequest, InsertClientResponse>
     {
         private readonly IIdentityRepository<Client> _clientRepository;
