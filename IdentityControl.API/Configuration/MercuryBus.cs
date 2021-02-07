@@ -1,4 +1,6 @@
 ﻿using IdentityControl.API.Data;
+using IdentityControl.API.Events;
+using MercuryBus.Events.Subscriber;
 using MercuryBus.Helpers;
 using MercuryBus.Local.Kafka.Consumer;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,11 @@ namespace IdentityControl.API.Configuration
                 });
 
             services.AddMercuryBusEventsPublisher();
+
+            services.AddMercuryBusDomainEventDispatcher("identity-control-api",
+                provider => DomainEventHandlersBuilder.ForAggregateType("Blog")
+                    .OnEvent<BlogCreatedEvent, IDomainEventHandler<BlogCreatedEvent>>()
+                    .Build());
 
             return services;
         }
