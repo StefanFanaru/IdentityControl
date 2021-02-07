@@ -37,6 +37,7 @@ namespace IdentityControl.API
 
             services
                 .AddApiServices()
+                .AddMercuryBus()
                 .AddAppDatabase(connectionString, migrationsAssembly)
                 .AddSwaggerConfiguration()
                 .AddAuth();

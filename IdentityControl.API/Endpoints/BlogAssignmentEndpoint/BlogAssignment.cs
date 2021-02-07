@@ -24,7 +24,7 @@ namespace IdentityControl.API.Endpoints.BlogAssignmentEndpoint
 
         [HttpPost("user/{id}/assign-blog/{blogId}")]
         [SwaggerOperation(Summary = "Assign a blog to a User",
-            Tags = new[] {"BlogAPI"})]
+            Tags = new[] {"BloggingAPI"})]
         public async Task<IActionResult> HandleAsync(string id, string blogId, CancellationToken cancellationToken = default)
         {
             if (!await _userRepository.Query().Where(x => x.Id == id).AnyAsync(cancellationToken))
