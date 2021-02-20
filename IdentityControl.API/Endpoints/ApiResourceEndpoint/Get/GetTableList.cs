@@ -21,10 +21,10 @@ namespace IdentityControl.API.Endpoints.ApiResourceEndpoint.Get
             Disabled
         }
 
-        private readonly IIdentityRepository<ApiResource> _repository;
+        private readonly IConfigurationRepository<ApiResource> _repository;
         private readonly IAspValidator _validator;
 
-        public GetTableList(IIdentityRepository<ApiResource> repository, IAspValidator validator)
+        public GetTableList(IConfigurationRepository<ApiResource> repository, IAspValidator validator)
         {
             _repository = repository;
             _validator = validator;

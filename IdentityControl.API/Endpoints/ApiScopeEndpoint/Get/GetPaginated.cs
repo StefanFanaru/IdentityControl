@@ -17,9 +17,9 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetPaginated : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiScope> _repository;
+        private readonly IConfigurationRepository<ApiScope> _repository;
 
-        public GetPaginated(IIdentityRepository<ApiScope> repository)
+        public GetPaginated(IConfigurationRepository<ApiScope> repository)
         {
             _repository = repository;
         }

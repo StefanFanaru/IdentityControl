@@ -18,16 +18,16 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.ClientChildren
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetClientChildren : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ClientCorsOrigin> _corsRepository;
-        private readonly IIdentityRepository<ClientGrantType> _grantsRepository;
-        private readonly IIdentityRepository<ClientPostLogoutRedirectUri> _logoutRedirectUrisRepository;
-        private readonly IIdentityRepository<ClientRedirectUri> _redirectUriRepository;
+        private readonly IConfigurationRepository<ClientCorsOrigin> _corsRepository;
+        private readonly IConfigurationRepository<ClientGrantType> _grantsRepository;
+        private readonly IConfigurationRepository<ClientPostLogoutRedirectUri> _logoutRedirectUrisRepository;
+        private readonly IConfigurationRepository<ClientRedirectUri> _redirectUriRepository;
 
         public GetClientChildren(
-            IIdentityRepository<ClientGrantType> grantsRepository,
-            IIdentityRepository<ClientCorsOrigin> corsRepository,
-            IIdentityRepository<ClientRedirectUri> redirectUriRepository,
-            IIdentityRepository<ClientPostLogoutRedirectUri> logoutRedirectUrisRepository)
+            IConfigurationRepository<ClientGrantType> grantsRepository,
+            IConfigurationRepository<ClientCorsOrigin> corsRepository,
+            IConfigurationRepository<ClientRedirectUri> redirectUriRepository,
+            IConfigurationRepository<ClientPostLogoutRedirectUri> logoutRedirectUrisRepository)
         {
             _grantsRepository = grantsRepository;
             _corsRepository = corsRepository;

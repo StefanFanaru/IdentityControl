@@ -17,10 +17,10 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetAll : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiScope> _repository;
+        private readonly IConfigurationRepository<ApiScope> _repository;
         private readonly IUserInfo _userInfo;
 
-        public GetAll(IIdentityRepository<ApiScope> repository, IUserInfo userInfo)
+        public GetAll(IConfigurationRepository<ApiScope> repository, IUserInfo userInfo)
         {
             _repository = repository;
             _userInfo = userInfo;
@@ -30,7 +30,7 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
         [SwaggerOperation(Summary = "Gets all the scopes", Tags = new[] {"ApiScopeEndpoint"})]
         public async Task<List<ApiScopeDto>> HandleAsync(CancellationToken cancellationToken = default)
         {
-            var blogId = _userInfo.BlogId;
+            var blogId = _userInfo.OwnedBlogs[0];
             return await _repository.Query()
                 .Select(e => new ApiScopeDto
                 {

@@ -16,9 +16,9 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Get : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiScope> _repository;
+        private readonly IConfigurationRepository<ApiScope> _repository;
 
-        public Get(IIdentityRepository<ApiScope> repository)
+        public Get(IConfigurationRepository<ApiScope> repository)
         {
             _repository = repository;
         }

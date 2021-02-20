@@ -16,14 +16,14 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetApiScopeOptions : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiScope> _apiScopeRepository;
-        private readonly IIdentityRepository<IdentityResource> _identityResourceRepo;
+        private readonly IConfigurationRepository<ApiScope> _apiScopeRepository;
+        private readonly IConfigurationRepository<IdentityResource> _configurationResourceRepo;
 
-        public GetApiScopeOptions(IIdentityRepository<ApiScope> apiScopeRepository,
-            IIdentityRepository<IdentityResource> identityResourceRepo)
+        public GetApiScopeOptions(IConfigurationRepository<ApiScope> apiScopeRepository,
+            IConfigurationRepository<IdentityResource> configurationResourceRepo)
         {
             _apiScopeRepository = apiScopeRepository;
-            _identityResourceRepo = identityResourceRepo;
+            _configurationResourceRepo = configurationResourceRepo;
         }
 
         [HttpGet("api-scope/options")]
@@ -38,7 +38,7 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
                 }).ToListAsync(cancellationToken);
 
             // Including identity resources because they are requested as a scope
-            apiScopes.AddRange(_identityResourceRepo.Query().Select(e => new BaseOption<string>
+            apiScopes.AddRange(_configurationResourceRepo.Query().Select(e => new BaseOption<string>
             {
                 Value = e.Name,
                 Text = e.DisplayName

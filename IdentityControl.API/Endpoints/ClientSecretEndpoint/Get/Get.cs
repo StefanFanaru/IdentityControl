@@ -16,9 +16,9 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Get : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ClientSecret> _secretRepository;
+        private readonly IConfigurationRepository<ClientSecret> _secretRepository;
 
-        public Get(IIdentityRepository<ClientSecret> secretRepository)
+        public Get(IConfigurationRepository<ClientSecret> secretRepository)
         {
             _secretRepository = secretRepository;
         }

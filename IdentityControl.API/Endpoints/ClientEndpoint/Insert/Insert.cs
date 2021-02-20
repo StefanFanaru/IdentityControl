@@ -17,11 +17,12 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.Insert
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Insert : BaseAsyncEndpoint<InsertClientRequest, InsertClientResponse>
     {
-        private readonly IIdentityRepository<Client> _clientRepository;
-        private readonly IIdentityRepository<ClientScope> _clientScopeRepository;
+        private readonly IConfigurationRepository<Client> _clientRepository;
+        private readonly IConfigurationRepository<ClientScope> _clientScopeRepository;
         private readonly IAspValidator _validator;
 
-        public Insert(IIdentityRepository<Client> clientRepository, IIdentityRepository<ClientScope> clientScopeRepository,
+        public Insert(IConfigurationRepository<Client> clientRepository,
+            IConfigurationRepository<ClientScope> clientScopeRepository,
             IAspValidator validator)
         {
             _clientRepository = clientRepository;

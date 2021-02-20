@@ -17,9 +17,9 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetPaginated : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ClientSecret> _repository;
+        private readonly IConfigurationRepository<ClientSecret> _repository;
 
-        public GetPaginated(IIdentityRepository<ClientSecret> repository)
+        public GetPaginated(IConfigurationRepository<ClientSecret> repository)
         {
             _repository = repository;
         }

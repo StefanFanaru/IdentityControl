@@ -1,4 +1,4 @@
-namespace IdentityControl.API.Data.Entities
+namespace IdentityServer.API.Data.ValueObjects
 {
     public class Address // ValueObject
     {

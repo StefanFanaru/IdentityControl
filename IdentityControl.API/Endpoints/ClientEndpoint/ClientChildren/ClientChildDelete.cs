@@ -18,18 +18,18 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.ClientChildren
     [ApiExplorerSettings(GroupName = "Internal")]
     public class ClientChildDelete : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<Client> _clientRepository;
-        private readonly IIdentityRepository<ClientCorsOrigin> _corsRepository;
-        private readonly IIdentityRepository<ClientGrantType> _grantsRepository;
-        private readonly IIdentityRepository<ClientPostLogoutRedirectUri> _logoutRedirectUrisRepository;
-        private readonly IIdentityRepository<ClientRedirectUri> _redirectUriRepository;
+        private readonly IConfigurationRepository<Client> _clientRepository;
+        private readonly IConfigurationRepository<ClientCorsOrigin> _corsRepository;
+        private readonly IConfigurationRepository<ClientGrantType> _grantsRepository;
+        private readonly IConfigurationRepository<ClientPostLogoutRedirectUri> _logoutRedirectUrisRepository;
+        private readonly IConfigurationRepository<ClientRedirectUri> _redirectUriRepository;
 
         public ClientChildDelete(
-            IIdentityRepository<Client> clientRepository,
-            IIdentityRepository<ClientGrantType> grantsRepository,
-            IIdentityRepository<ClientCorsOrigin> corsRepository,
-            IIdentityRepository<ClientRedirectUri> redirectUriRepository,
-            IIdentityRepository<ClientPostLogoutRedirectUri> logoutRedirectUrisRepository)
+            IConfigurationRepository<Client> clientRepository,
+            IConfigurationRepository<ClientGrantType> grantsRepository,
+            IConfigurationRepository<ClientCorsOrigin> corsRepository,
+            IConfigurationRepository<ClientRedirectUri> redirectUriRepository,
+            IConfigurationRepository<ClientPostLogoutRedirectUri> logoutRedirectUrisRepository)
         {
             _clientRepository = clientRepository;
             _grantsRepository = grantsRepository;

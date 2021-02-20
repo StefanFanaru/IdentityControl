@@ -35,6 +35,7 @@ namespace IdentityControl.API.Configuration
             services.AddScoped<IApiScopeTableList, ApiScopeTableList>();
             services.AddScoped<IClientSecretTableList, ClientSecretTableList>();
             services.AddScoped<IApiResourceSecretTableList, ApiResourceSecretTableList>();
+            services.AddScoped(typeof(IConfigurationRepository<>), typeof(ConfigurationRepository<>));
             services.AddScoped(typeof(IIdentityRepository<>), typeof(IdentityRepository<>));
             services.AddScoped<IUserRepository, UserRepository>();
 

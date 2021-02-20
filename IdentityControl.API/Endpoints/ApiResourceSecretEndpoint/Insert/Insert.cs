@@ -19,10 +19,10 @@ namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Insert
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Insert : BaseAsyncEndpoint<InsertApiResourceSecretRequest, InsertApiResourceSecretResponse>
     {
-        private readonly IIdentityRepository<ApiResourceSecret> _repository;
+        private readonly IConfigurationRepository<ApiResourceSecret> _repository;
         private readonly IAspValidator _validator;
 
-        public Insert(IIdentityRepository<ApiResourceSecret> repository, IAspValidator validator)
+        public Insert(IConfigurationRepository<ApiResourceSecret> repository, IAspValidator validator)
         {
             _repository = repository;
             _validator = validator;

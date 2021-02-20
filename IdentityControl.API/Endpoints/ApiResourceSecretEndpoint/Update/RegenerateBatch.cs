@@ -19,10 +19,10 @@ namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Update
     [ApiExplorerSettings(GroupName = "Internal")]
     public class RegenerateBatch : BaseAsyncEndpoint<RegenerateApiResourceSecretRequest[], UpdateApiResourceSecretResponse>
     {
-        private readonly IIdentityRepository<ApiResourceSecret> _repository;
+        private readonly IConfigurationRepository<ApiResourceSecret> _repository;
         private readonly IAspValidator _validator;
 
-        public RegenerateBatch(IIdentityRepository<ApiResourceSecret> repository, IAspValidator validator)
+        public RegenerateBatch(IConfigurationRepository<ApiResourceSecret> repository, IAspValidator validator)
         {
             _repository = repository;
             _validator = validator;

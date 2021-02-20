@@ -17,9 +17,9 @@ namespace IdentityControl.API.Services.ApiScopes
             Disabled
         }
 
-        private readonly IIdentityRepository<ApiScope> _repository;
+        private readonly IConfigurationRepository<ApiScope> _repository;
 
-        public ApiScopeTableList(IIdentityRepository<ApiScope> repository)
+        public ApiScopeTableList(IConfigurationRepository<ApiScope> repository)
         {
             _repository = repository;
         }

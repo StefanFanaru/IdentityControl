@@ -17,9 +17,9 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.Update
     [ApiExplorerSettings(GroupName = "Internal")]
     public class EnableBatch : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<Client> _repository;
+        private readonly IConfigurationRepository<Client> _repository;
 
-        public EnableBatch(IIdentityRepository<Client> repository)
+        public EnableBatch(IConfigurationRepository<Client> repository)
         {
             _repository = repository;
         }

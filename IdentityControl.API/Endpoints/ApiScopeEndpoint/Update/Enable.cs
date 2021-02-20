@@ -17,9 +17,9 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Update
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Enable : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiScope> _repository;
+        private readonly IConfigurationRepository<ApiScope> _repository;
 
-        public Enable(IIdentityRepository<ApiScope> repository)
+        public Enable(IConfigurationRepository<ApiScope> repository)
         {
             _repository = repository;
         }

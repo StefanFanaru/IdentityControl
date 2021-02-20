@@ -18,9 +18,9 @@ namespace IdentityControl.API.Services.ClientSecrets
             Expired
         }
 
-        private readonly IIdentityRepository<ClientSecret> _repository;
+        private readonly IConfigurationRepository<ClientSecret> _repository;
 
-        public ClientSecretTableList(IIdentityRepository<ClientSecret> repository)
+        public ClientSecretTableList(IConfigurationRepository<ClientSecret> repository)
         {
             _repository = repository;
         }

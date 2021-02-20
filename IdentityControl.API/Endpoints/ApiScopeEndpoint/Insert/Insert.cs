@@ -16,10 +16,10 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Insert
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Insert : BaseAsyncEndpoint<InsertApiScopeRequest, InsertApiScopeResponse>
     {
-        private readonly IIdentityRepository<ApiScope> _repository;
+        private readonly IConfigurationRepository<ApiScope> _repository;
         private readonly IAspValidator _validator;
 
-        public Insert(IIdentityRepository<ApiScope> repository, IAspValidator validator)
+        public Insert(IConfigurationRepository<ApiScope> repository, IAspValidator validator)
         {
             _repository = repository;
             _validator = validator;

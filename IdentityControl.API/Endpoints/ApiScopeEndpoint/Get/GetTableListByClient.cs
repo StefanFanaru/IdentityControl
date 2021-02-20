@@ -16,10 +16,10 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetTableListByClient : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ClientScope> _clientScopeRepository;
+        private readonly IConfigurationRepository<ClientScope> _clientScopeRepository;
         private readonly IApiScopeTableList _tableList;
 
-        public GetTableListByClient(IIdentityRepository<ClientScope> clientScopeRepository, IApiScopeTableList tableList)
+        public GetTableListByClient(IConfigurationRepository<ClientScope> clientScopeRepository, IApiScopeTableList tableList)
         {
             _clientScopeRepository = clientScopeRepository;
             _tableList = tableList;

@@ -16,12 +16,12 @@ namespace IdentityControl.API.Endpoints.ApiResourceEndpoint.Insert
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Insert : BaseAsyncEndpoint<InsertApiResourceRequest, InsertApiResourceResponse>
     {
-        private readonly IIdentityRepository<ApiResource> _apiResourceRepository;
-        private readonly IIdentityRepository<ApiResourceScope> _apiResourceScopeRepo;
+        private readonly IConfigurationRepository<ApiResource> _apiResourceRepository;
+        private readonly IConfigurationRepository<ApiResourceScope> _apiResourceScopeRepo;
         private readonly IAspValidator _validator;
 
-        public Insert(IIdentityRepository<ApiResource> apiResourceRepository,
-            IIdentityRepository<ApiResourceScope> apiResourceScopeRepo, IAspValidator validator)
+        public Insert(IConfigurationRepository<ApiResource> apiResourceRepository,
+            IConfigurationRepository<ApiResourceScope> apiResourceScopeRepo, IAspValidator validator)
         {
             _apiResourceRepository = apiResourceRepository;
             _apiResourceScopeRepo = apiResourceScopeRepo;

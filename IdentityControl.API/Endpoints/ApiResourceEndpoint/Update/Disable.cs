@@ -17,9 +17,9 @@ namespace IdentityControl.API.Endpoints.ApiResourceEndpoint.Update
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Disable : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiResource> _repository;
+        private readonly IConfigurationRepository<ApiResource> _repository;
 
-        public Disable(IIdentityRepository<ApiResource> repository)
+        public Disable(IConfigurationRepository<ApiResource> repository)
         {
             _repository = repository;
         }

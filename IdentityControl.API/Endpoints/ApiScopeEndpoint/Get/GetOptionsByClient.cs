@@ -16,17 +16,17 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetOptionsByClient : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiScope> _apiScopeRepository;
-        private readonly IIdentityRepository<ClientScope> _clientScopeRepository;
-        private readonly IIdentityRepository<IdentityResource> _identityResourceRepo;
+        private readonly IConfigurationRepository<ApiScope> _apiScopeRepository;
+        private readonly IConfigurationRepository<ClientScope> _clientScopeRepository;
+        private readonly IConfigurationRepository<IdentityResource> _configurationResourceRepo;
 
-        public GetOptionsByClient(IIdentityRepository<ClientScope> clientScopeRepository,
-            IIdentityRepository<ApiScope> apiScopeRepository,
-            IIdentityRepository<IdentityResource> identityResourceRepo)
+        public GetOptionsByClient(IConfigurationRepository<ClientScope> clientScopeRepository,
+            IConfigurationRepository<ApiScope> apiScopeRepository,
+            IConfigurationRepository<IdentityResource> configurationResourceRepo)
         {
             _clientScopeRepository = clientScopeRepository;
             _apiScopeRepository = apiScopeRepository;
-            _identityResourceRepo = identityResourceRepo;
+            _configurationResourceRepo = configurationResourceRepo;
         }
 
         [HttpGet("api-scope/client/{clientId}/options")]
@@ -47,7 +47,7 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Get
                 }).ToListAsync(cancellationToken);
 
             // Including identity resources because they are requested as a scope
-            apiScopes.AddRange(_identityResourceRepo.Query()
+            apiScopes.AddRange(_configurationResourceRepo.Query()
                 .Where(x => names.Contains(x.Name))
                 .Select(x => new BaseOption<string>
                 {

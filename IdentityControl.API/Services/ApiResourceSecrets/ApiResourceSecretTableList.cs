@@ -18,9 +18,9 @@ namespace IdentityControl.API.Services.ApiResourceSecrets
             Expired
         }
 
-        private readonly IIdentityRepository<ApiResourceSecret> _repository;
+        private readonly IConfigurationRepository<ApiResourceSecret> _repository;
 
-        public ApiResourceSecretTableList(IIdentityRepository<ApiResourceSecret> repository)
+        public ApiResourceSecretTableList(IConfigurationRepository<ApiResourceSecret> repository)
         {
             _repository = repository;
         }

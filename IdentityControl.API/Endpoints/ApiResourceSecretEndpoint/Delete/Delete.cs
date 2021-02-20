@@ -15,9 +15,9 @@ namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Delete
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Delete : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiResourceSecret> _repository;
+        private readonly IConfigurationRepository<ApiResourceSecret> _repository;
 
-        public Delete(IIdentityRepository<ApiResourceSecret> repository)
+        public Delete(IConfigurationRepository<ApiResourceSecret> repository)
         {
             _repository = repository;
         }

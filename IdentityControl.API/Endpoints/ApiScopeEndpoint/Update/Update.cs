@@ -19,15 +19,15 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Update
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Update : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiResourceScope> _apiResourceScopeRepo;
-        private readonly IIdentityRepository<ApiScope> _apiScopeRepository;
-        private readonly IIdentityRepository<ClientScope> _clientScopeRepository;
+        private readonly IConfigurationRepository<ApiResourceScope> _apiResourceScopeRepo;
+        private readonly IConfigurationRepository<ApiScope> _apiScopeRepository;
+        private readonly IConfigurationRepository<ClientScope> _clientScopeRepository;
         private readonly IAspValidator _validator;
 
         public Update(
-            IIdentityRepository<ApiScope> apiScopeRepository,
-            IIdentityRepository<ClientScope> clientScopeRepository,
-            IIdentityRepository<ApiResourceScope> apiResourceScopeRepo,
+            IConfigurationRepository<ApiScope> apiScopeRepository,
+            IConfigurationRepository<ClientScope> clientScopeRepository,
+            IConfigurationRepository<ApiResourceScope> apiResourceScopeRepo,
             IAspValidator validator)
         {
             _apiScopeRepository = apiScopeRepository;

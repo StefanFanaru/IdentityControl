@@ -18,9 +18,9 @@ namespace IdentityControl.API.Endpoints.ApiScopeEndpoint.Delete
     [ApiExplorerSettings(GroupName = "Internal")]
     public class DeleteBatch : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiScope> _repository;
+        private readonly IConfigurationRepository<ApiScope> _repository;
 
-        public DeleteBatch(IIdentityRepository<ApiScope> repository)
+        public DeleteBatch(IConfigurationRepository<ApiScope> repository)
         {
             _repository = repository;
         }

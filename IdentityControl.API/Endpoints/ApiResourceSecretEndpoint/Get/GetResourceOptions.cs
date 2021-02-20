@@ -16,9 +16,9 @@ namespace IdentityControl.API.Endpoints.ApiResourceSecretEndpoint.Get
     [ApiExplorerSettings(GroupName = "Internal")]
     public class GetResourceOptions : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiResource> _repository;
+        private readonly IConfigurationRepository<ApiResource> _repository;
 
-        public GetResourceOptions(IIdentityRepository<ApiResource> repository)
+        public GetResourceOptions(IConfigurationRepository<ApiResource> repository)
         {
             _repository = repository;
         }

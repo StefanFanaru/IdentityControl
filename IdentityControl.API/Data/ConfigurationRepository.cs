@@ -2,15 +2,16 @@
 using IdentityControl.API.Extensions;
 using IdentityControl.API.Services.SignalR;
 using IdentityControl.API.Services.ToasterEvents;
+using IdentityServer4.EntityFramework.DbContexts;
 
 namespace IdentityControl.API.Data
 {
-    public class IdentityRepository<T> : EfRepository<IdentityContext, T>, IIdentityRepository<T> where T : class
+    public class ConfigurationRepository<T> : EfRepository<ConfigurationDbContext, T>, IConfigurationRepository<T> where T : class
     {
-        private readonly IdentityContext _context;
+        private readonly ConfigurationDbContext _context;
         private readonly IEventSender _eventSender;
 
-        public IdentityRepository(IdentityContext context, IEventSender eventSender) : base(context)
+        public ConfigurationRepository(ConfigurationDbContext context, IEventSender eventSender) : base(context)
         {
             _context = context;
             _eventSender = eventSender;

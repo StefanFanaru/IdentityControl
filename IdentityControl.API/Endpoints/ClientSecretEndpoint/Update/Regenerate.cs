@@ -19,10 +19,10 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Update
     [ApiExplorerSettings(GroupName = "Internal")]
     public class Regenerate : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ClientSecret> _repository;
+        private readonly IConfigurationRepository<ClientSecret> _repository;
         private readonly IAspValidator _validator;
 
-        public Regenerate(IIdentityRepository<ClientSecret> repository, IAspValidator validator)
+        public Regenerate(IConfigurationRepository<ClientSecret> repository, IAspValidator validator)
         {
             _repository = repository;
             _validator = validator;

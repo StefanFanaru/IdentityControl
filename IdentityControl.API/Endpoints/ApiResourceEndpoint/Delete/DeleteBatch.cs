@@ -18,9 +18,9 @@ namespace IdentityControl.API.Endpoints.ApiResourceEndpoint.Delete
     [ApiExplorerSettings(GroupName = "Internal")]
     public class DeleteBatch : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ApiResource> _repository;
+        private readonly IConfigurationRepository<ApiResource> _repository;
 
-        public DeleteBatch(IIdentityRepository<ApiResource> repository)
+        public DeleteBatch(IConfigurationRepository<ApiResource> repository)
         {
             _repository = repository;
         }

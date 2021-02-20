@@ -25,9 +25,9 @@ namespace IdentityControl.API.Endpoints.ClientEndpoint.Get
             WithBrowserAccessTokens
         }
 
-        private readonly IIdentityRepository<Client> _repository;
+        private readonly IConfigurationRepository<Client> _repository;
 
-        public GetTableList(IIdentityRepository<Client> repository)
+        public GetTableList(IConfigurationRepository<Client> repository)
         {
             _repository = repository;
         }

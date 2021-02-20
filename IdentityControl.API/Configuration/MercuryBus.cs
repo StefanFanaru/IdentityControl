@@ -1,5 +1,6 @@
 ﻿using IdentityControl.API.Data;
 using IdentityControl.API.Events;
+using MercuryBus.Consumer.Common;
 using MercuryBus.Events.Subscriber;
 using MercuryBus.Helpers;
 using MercuryBus.Local.Kafka.Consumer;
@@ -15,6 +16,10 @@ namespace IdentityControl.API.Configuration
 
         public static IServiceCollection AddMercuryBus(this IServiceCollection services)
         {
+            services.AddSingleton<IMessageHandlerDecorator, MercuryExecutionStrategyMessageHandlerDecorator>();
+
+            services.AddScoped<IDomainEventHandler<BlogCreatedEvent>, BlogCreatedEventHandler>();
+
             services.AddMercuryBusSqlKafkaTransport("mercury", Configuration["Settings:KafkaBoostrapServers"],
                 MercuryKafkaConsumerConfigurationProperties.Empty(),
                 (serviceProvider, dbContextOptions) =>

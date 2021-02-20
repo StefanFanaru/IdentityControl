@@ -17,10 +17,10 @@ namespace IdentityControl.API.Endpoints.ClientSecretEndpoint.Delete
     [ApiExplorerSettings(GroupName = "Internal")]
     public class DeleteBatch : BaseAsyncEndpoint
     {
-        private readonly IIdentityRepository<ClientSecret> _repository;
+        private readonly IConfigurationRepository<ClientSecret> _repository;
         private readonly IUserInfo _userInfo;
 
-        public DeleteBatch(IIdentityRepository<ClientSecret> repository, IUserInfo userInfo)
+        public DeleteBatch(IConfigurationRepository<ClientSecret> repository, IUserInfo userInfo)
         {
             _repository = repository;
             _userInfo = userInfo;
